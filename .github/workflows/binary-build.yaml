@@ -1,0 +1,80 @@
+name: Build Binary
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-windows:
+    strategy:
+      matrix:
+        arch: [x64, x86, arm64]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: '>=2.7.5 <3.0.0'
+
+      - name: Build
+        run: |
+          xmake f -p windows -a ${{ matrix.arch }} -m release -y -vD
+          xmake build -y -vD webview_shared
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webview-windows-${{ matrix.arch }}
+          path: ./build/windows/${{ matrix.arch }}
+
+  build-macos:
+    strategy:
+      matrix:
+        arch: [x86_64, arm64]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: '>=2.7.5 <3.0.0'
+
+      - name: Build
+        run: |
+          xmake f -p macosx -a ${{ matrix.arch }} -m release -y -vD
+          xmake build -y -vD webview_shared
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webview-macosx-${{ matrix.arch }}
+          path: ./build/macosx/${{ matrix.arch }}
+
+  build-linux:
+    strategy:
+      matrix:
+        arch: [x86_64, arm64-v8a]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
+      
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: '>=2.7.5 <3.0.0'
+
+      - name: Build
+        run: |
+          xmake f -p linux -a ${{ matrix.arch }} -m release -y -vD
+          xmake build -y -vD webview_shared
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webview-linux-${{ matrix.arch }}
+          path: ./build/linux/${{ matrix.arch }}

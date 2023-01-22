@@ -1,0 +1,15 @@
+bin/
+obj/
+build/
+*.nupkg
+.vs/
+Files.wxs
+*.wixobj
+*.wixpdb
+*.msi
+.idea/
+libs/*
+vc/
+
+.xmake
+.vscode
