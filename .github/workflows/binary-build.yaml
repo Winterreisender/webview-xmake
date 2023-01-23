@@ -21,14 +21,15 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p windows -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD libwebview
+          cd source
+          xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
+          xmake build -P . -y -vD libwebview
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: webview-windows-${{ matrix.arch }}
-          path: ./build/windows/${{ matrix.arch }}/release
+          path: ./source/build/windows/${{ matrix.arch }}/release
 
   build-macos:
     strategy:
@@ -44,14 +45,15 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p macosx -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD libwebview
+          cd source
+          xmake f -p macosx -a ${{ matrix.arch }} -m release -P . -y -vD
+          xmake build -P . -y -vD libwebview
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: webview-macosx-${{ matrix.arch }}
-          path: ./build/macosx/${{ matrix.arch }}/release
+          path: ./source/build/macosx/${{ matrix.arch }}/release
 
   build-linux:
     strategy:
@@ -70,11 +72,12 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p linux -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD libwebview
+          cd source
+          xmake f -p linux -a ${{ matrix.arch }} -m release -P . -y -vD
+          xmake build -P . -y -vD libwebview
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: webview-linux-${{ matrix.arch }}
-          path: ./build/linux/${{ matrix.arch }}/release
+          path: ./source/build/linux/${{ matrix.arch }}/release
