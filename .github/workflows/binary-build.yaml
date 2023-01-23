@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           xmake f -p windows -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD webview_shared
+          xmake build -y -vD libwebview
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: |
           xmake f -p macosx -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD webview_shared
+          xmake build -y -vD libwebview
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -71,7 +71,7 @@ jobs:
       - name: Build
         run: |
           xmake f -p linux -a ${{ matrix.arch }} -m release -y -vD
-          xmake build -y -vD webview_shared
+          xmake build -y -vD libwebview
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
