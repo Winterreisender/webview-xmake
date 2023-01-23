@@ -25,19 +25,61 @@ See `.github/workflows/binary-build.yml` for detailed build steps.
 For example, build for Windows x64:
 
 ```shell
-xmake f -p windows -a x64 -m release
-xmake build webview_shared
+cd source
+xmake f -p windows -a x64 -m release -P .
+xmake build -P . webview_shared
 ```
 
 ### Use xmake package
 
-We're still trying to understand how xmake work with packages, currently you can just copy `xmake.lua` and `src`folder, then build with
+#### Quick start
 
+1. Create a xmake project
 ```shell
-xmake build webview_test
+xmake create myproject
+cd myproject
+```
+2. Modify the `xmake.lua` in your project
+```lua
+add_repositories("webview-xmake https://github.com/Winterreisender/webview-xmake.git")
+add_requires("webview 20230123")
+if is_plat("linux") then
+    add_requires("pkgconfig::gtk+-3.0", "pkgconfig::webkit2gtk-4.0", {system = true})
+end
+
+target("myproject")
+    set_kind("binary")
+    set_languages("c++17")
+    add_packages("webview")
+    add_files("src/test.cpp")
+    if is_plat("linux") then
+        add_packages("pkgconfig::gtk+-3.0")
+        add_packages("pkgconfig::webkit2gtk-4.0")
+    end
+    if is_plat("macosx") then
+        set_languages("c++11")
+        add_frameworks("WebKit")
+    end
+target_end()
+```
+3. Write your code in `src/main.cpp`
+```c++
+#include "webview.h"
+int main() {
+    webview::webview w(false, nullptr);
+    w.set_title("Example");
+    w.navigate("https://example.com");
+    w.run();
+    return 0;
+}
+```
+4. Build and run
+```shell
+xmake -P .
+xmake run
 ```
 
-If you want to modify the build steps, see `target("webview_test")` in `xmake.lua`
+You can find the example in [example/myproject](example/myproject).
 
 ## Credits
 
