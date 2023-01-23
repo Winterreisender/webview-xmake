@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: webview-windows-${{ matrix.arch }}
-          path: ./build/windows/${{ matrix.arch }}
+          path: ./build/windows/${{ matrix.arch }}/release
 
   build-macos:
     strategy:
@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: webview-macosx-${{ matrix.arch }}
-          path: ./build/macosx/${{ matrix.arch }}
+          path: ./build/macosx/${{ matrix.arch }}/release
 
   build-linux:
     strategy:
@@ -77,4 +77,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: webview-linux-${{ matrix.arch }}
-          path: ./build/linux/${{ matrix.arch }}
+          path: ./build/linux/${{ matrix.arch }}/release
