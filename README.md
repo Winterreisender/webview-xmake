@@ -6,7 +6,7 @@ Build shared binary libs for [webview](https://github.com/webview/webview) using
 
 |        | Windows | Linux | macOS |
 | ------ | ------- | ----- | ----- |
-| x64    | ✔      | ✔    | ✔    |
+| x86_64 | ✔      | ✔    | ✔    |
 | arm64  | ✔      | ✔    | ✔    |
 | x86_32 | ✔      |       | -     |
 
