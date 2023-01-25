@@ -13,3 +13,5 @@ vc/
 
 .xmake
 .vscode
+source/build/
+source/.xmake/

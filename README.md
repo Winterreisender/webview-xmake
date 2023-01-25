@@ -12,12 +12,6 @@ Build shared binary libs for [webview](https://github.com/webview/webview) using
 
 ## Usage
 
-### Build with GitHub Actions
-
-1. Edit the `add_versions` of  `xmake.lua`
-2. Push
-3. See GitHub Actions
-
 ### Build Locally
 
 See `.github/workflows/binary-build.yml` for detailed build steps.
@@ -27,7 +21,7 @@ For example, build for Windows x64:
 ```shell
 cd source
 xmake f -p windows -a x64 -m release -P .
-xmake build -P . webview_shared
+xmake build -P . webview
 ```
 
 ### Use xmake package
@@ -35,14 +29,17 @@ xmake build -P . webview_shared
 #### Quick start
 
 1. Create a xmake project
+
 ```shell
 xmake create myproject
 cd myproject
 ```
+
 2. Modify the `xmake.lua` in your project
+
 ```lua
 add_repositories("webview-xmake https://github.com/Winterreisender/webview-xmake.git")
-add_requires("webview 20230123")
+add_requires("webview")
 if is_plat("linux") then
     add_requires("pkgconfig::gtk+-3.0", "pkgconfig::webkit2gtk-4.0", {system = true})
 end
@@ -62,7 +59,9 @@ target("myproject")
     end
 target_end()
 ```
+
 3. Write your code in `src/main.cpp`
+
 ```c++
 #include "webview.h"
 int main() {
@@ -73,7 +72,9 @@ int main() {
     return 0;
 }
 ```
+
 4. Build and run
+
 ```shell
 xmake -P .
 xmake run
@@ -83,13 +84,11 @@ You can find the example in [example/myproject](example/myproject).
 
 ## Credits
 
-
-| Project | License  |
-| --- | --- |
-| [xmake](https://xmake.io)| [Apache-2.0](https://github.com/xmake-io/xmake/blob/master/LICENSE.md) |
-| [webview](https://github.com/webview/webview) | [MIT](https://github.com/webview/webview/blob/master/LICENSE) |
+| Project                                                                   | License                                                                             |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [xmake](https://xmake.io)                                                    | [Apache-2.0](https://github.com/xmake-io/xmake/blob/master/LICENSE.md)                 |
+| [webview](https://github.com/webview/webview)                                | [MIT](https://github.com/webview/webview/blob/master/LICENSE)                          |
 | [Microsoft Webview2](https://www.nuget.org/packages/Microsoft.Web.WebView2/) | [BSD-style](https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.1245.22/License) |
-
 
 ## License
 

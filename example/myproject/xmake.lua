@@ -1,6 +1,10 @@
+-- Build and run with
+-- xmake -P .
+-- xmake -P . run
+
 add_repositories("webview-xmake https://github.com/Winterreisender/webview-xmake.git")
 
-add_requires("webview 20230123")
+add_requires("webview")
 if is_plat("linux") then
     add_requires("pkgconfig::gtk+-3.0", "pkgconfig::webkit2gtk-4.0", {system = true})
 end

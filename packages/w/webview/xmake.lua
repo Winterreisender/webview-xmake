@@ -5,7 +5,7 @@ package("webview")
     set_license("MIT")
 
     set_urls("https://github.com/webview/webview.git")
-    add_versions("20230123", "14f8e24a873c7e8deb2b1dd29c8e5841529fe467")
+    add_versions("0.10.0.230125", "14f8e24a873c7e8deb2b1dd29c8e5841529fe467")
     
     if is_plat("windows") then
         add_deps("MSWebview2 1.0.1518.46")
