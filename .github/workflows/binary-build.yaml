@@ -29,7 +29,8 @@ jobs:
         run: |
           cd source
           xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD all
+          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD webview_static
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -53,7 +54,8 @@ jobs:
         run: |
           cd source
           xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD all
+          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD webview_static
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -77,7 +79,8 @@ jobs:
         run: |
           cd source
           xmake f -p macosx -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD all
+          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD webview_static
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -104,7 +107,8 @@ jobs:
         run: |
           cd source
           xmake f -p linux -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD all
+          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD webview_static
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
