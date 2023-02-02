@@ -21,10 +21,11 @@ jobs:
           update: true
           install: >-
             mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-gcc
             mingw-w64-x86_64-xmake
 
       - name: Build
-      - shell: msys2 {0}
+        shell: msys2 {0}
         run: |
           cd source
           xmake f -p mingw -a ${{ matrix.arch }} -m release -P . -y -vD
