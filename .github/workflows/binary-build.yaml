@@ -38,8 +38,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: webview-windows-${{ matrix.arch }}
-          path: ./source/build/windows/${{ matrix.arch }}/release
+          name: webview-mingw-${{ matrix.arch }}
+          path: ./source/build/mingw/${{ matrix.arch }}/release
 
   build-windows:
     strategy:
