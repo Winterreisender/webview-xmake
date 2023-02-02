@@ -20,6 +20,10 @@ target("webview")
         add_defines("WEBVIEW_API=__declspec(dllexport)")
     end
 
+    if is_plat("mingw") then 
+        add_links("advapi32","ole32","shell32","shlwapi","user32","version")
+    end
+
     if is_plat("macosx") then
         set_languages("c++11")
         add_frameworks("WebKit")
@@ -29,20 +33,21 @@ target("webview")
     set_optimize("fast")
 target_end()
 
-target("webview_static")
+target("webview")
     set_kind("static")
-    set_languages("c++20")
+    set_languages("c++17")
     add_packages("webview")
-    add_packages("MSWebview2 1.0.1518.46")
     
     if is_plat("linux") then
         add_packages("pkgconfig::gtk+-3.0")
         add_packages("pkgconfig::webkit2gtk-4.0")
     end
 
-    if is_plat("windows")
-        add_cxxflags("/EHsc")
-        add_defines("WEBVIEW_API=__declspec(dllexport)")
+    if is_plat("windows") then
+    end
+
+    if is_plat("mingw") then 
+        add_links("advapi32","ole32","shell32","shlwapi","user32","version")
     end
 
     if is_plat("macosx") then

@@ -7,6 +7,37 @@ on:
     branches: [ master ]
 
 jobs:
+  build-mingw:
+    strategy:
+      matrix:
+        arch: [x86_64]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+    - uses: msys2/setup-msys2@v2
+      with:
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: '>=2.7.5 <3.0.0'
+
+      - name: Build
+        run: |
+          cd source
+          xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
+          xmake build -P . -y -vD all
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webview-windows-${{ matrix.arch }}
+          path: ./source/build/windows/${{ matrix.arch }}/release
+
   build-windows:
     strategy:
       matrix:
@@ -23,7 +54,7 @@ jobs:
         run: |
           cd source
           xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD all
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -47,7 +78,7 @@ jobs:
         run: |
           cd source
           xmake f -p macosx -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD all
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -74,7 +105,7 @@ jobs:
         run: |
           cd source
           xmake f -p linux -a ${{ matrix.arch }} -m release -P . -y -vD
-          xmake build -P . -y -vD webview
+          xmake build -P . -y -vD all
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
