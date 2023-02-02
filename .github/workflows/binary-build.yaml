@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: |
           cd source
-          xmake f -p windows -a ${{ matrix.arch }} -m release -P . -y -vD
+          xmake f -p mingw -a ${{ matrix.arch }} -m release -P . -y -vD
           xmake build -P . -y -vD webview
           xmake build -P . -y -vD webview_static
 
