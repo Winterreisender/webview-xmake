@@ -33,7 +33,7 @@ target("webview")
     set_optimize("fast")
 target_end()
 
-target("webview")
+target("webview_static")
     set_kind("static")
     set_languages("c++17")
     add_packages("webview")
