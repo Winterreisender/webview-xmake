@@ -23,6 +23,9 @@ jobs:
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-xmake
+            mingw-w64-7zip
+            unzip
+            git
 
       - name: Build
         shell: msys2 {0}
