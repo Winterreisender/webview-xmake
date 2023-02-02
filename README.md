@@ -1,14 +1,14 @@
 # webview-xmake
 
-Build shared binary libs for [webview](https://github.com/webview/webview) using [xmake](https://xmake.io). Also a xmake package for [webview](https://github.com/webview/webview).
+Build shared and static binary libs for [webview](https://github.com/webview/webview) using [xmake](https://xmake.io). Also a xmake package for [webview](https://github.com/webview/webview).
 
 ## Supported Platforms
 
-|        | Windows | Linux | macOS |
-| ------ | ------- | ----- | ----- |
-| x86_64 | ✔      | ✔    | ✔    |
-| arm64  | ✔      | ✔    | ✔    |
-| x86_32 | ✔      |       | -     |
+|        | Windows | Linux | macOS | mingw |
+| ------ | ------- | ----- | ----- | ----- |
+| x86_64 | ✔      | ✔    | ✔    | ✔    |
+| arm64  | ✔      | ✔    | ✔    |       |
+| x86_32 | ✔      |       | -     |       |
 
 ## Usage
 
