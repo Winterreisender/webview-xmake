@@ -39,7 +39,7 @@ cd myproject
 
 ```lua
 add_repositories("webview-xmake https://github.com/Winterreisender/webview-xmake.git")
-add_requires("webview")
+add_requires("webview 0.10.0.230210")
 if is_plat("linux") then
     add_requires("pkgconfig::gtk+-3.0", "pkgconfig::webkit2gtk-4.0", {system = true})
 end
