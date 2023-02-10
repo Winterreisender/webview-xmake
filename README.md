@@ -7,7 +7,7 @@ Build shared and static binary libs for [webview](https://github.com/webview/web
 |        | Windows | Linux | macOS | mingw |
 | ------ | ------- | ----- | ----- | ----- |
 | x86_64 | ✔      | ✔    | ✔    | ✔    |
-| arm64  | ✔      | ✔    | ✔    |       |
+| arm64  | ✔      | ✔    |     |       |
 | x86_32 | ✔      |       | -     |       |
 
 ## Usage
