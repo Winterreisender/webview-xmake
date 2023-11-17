@@ -9,6 +9,8 @@ target("webview")
     set_kind("shared")
     set_languages("c++17")
     add_packages("webview")
+    add_defines("WEBVIEW_BUILD_SHARED")
+
     
     if is_plat("linux") then
         add_packages("pkgconfig::gtk+-3.0")
@@ -37,6 +39,7 @@ target("webview_static")
     set_kind("static")
     set_languages("c++17")
     add_packages("webview")
+    add_defines("WEBVIEW_STATIC")
     
     if is_plat("linux") then
         add_packages("pkgconfig::gtk+-3.0")
