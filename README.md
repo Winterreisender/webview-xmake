@@ -1,5 +1,10 @@
 # webview-xmake
 
+
+> [!IMPORTANT]
+> 
+> This project is archived because the offical cmake version is good enough now. You can still use it in your xmake project but it's not recommended
+
 Build shared and static binary libs for [webview](https://github.com/webview/webview) using [xmake](https://xmake.io). Also a xmake package for [webview](https://github.com/webview/webview).
 
 ## Supported Platforms
